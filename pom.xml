@@ -70,13 +70,16 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.4.5</version>
+                <version>3.1.1</version>
                 <configuration>
+                    <failBuildOnCVSS>8</failBuildOnCVSS>
+                    <cveUrl20Modified>https://nvd.nist.gov/feeds/xml/cve/2.0/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
+                    <cveUrl20Base>https://nvd.nist.gov/feeds/xml/cve/2.0/nvdcve-2.0-%d.xml.gz</cveUrl20Base>
                     <!-- Skip artifacts not bundled in distribution (provided scope) -->
                     <skipProvidedScope>true</skipProvidedScope>
                     <!-- Suppress false positives or dependencies that cannot be changed for specific reasons.-->
                     <suppressionFile>suppressed-cves.xml</suppressionFile>
-                    <format>${dependency-check-format}</format>
+                    <format>html</format>
                 </configuration>
                 <!-- Don't specify an execution, because this might take long and is not needed in every build.
                      A report can be generated on demand using "mvn org.owasp:dependency-check-maven:check"
